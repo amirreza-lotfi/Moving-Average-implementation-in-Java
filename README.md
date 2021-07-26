@@ -5,6 +5,6 @@ is commonly used in technical analysis. The reason for calculating the moving av
 is to help smooth out the price data by creating a constantly updated average price.<br /><br />
 This project, has 2 classes named <b>SimpleMovingAverage</b> and <b>ExponentialMovingAverage</b> that each has a method
 that use to creat simple moving average of price array.<br />
-#Getting-Start
+# Getting-Start
 To use classes and functions, you should fill price arrayList with your own data (implement <br>TODO</br>) in constructure.
 you can read data from file and set it in price arrayList or you can get data from user input.
