@@ -1,5 +1,6 @@
 package trade_engine.moving_average_strategy;
 
+import data.PriceProvider;
 import stoke_indexes.moving_average.ExponentialMovingAverage;
 import stoke_indexes.moving_average.MovingAverage;
 import trade_engine.TradeRunner;
@@ -10,9 +11,18 @@ import java.util.Scanner;
 public class TwoEmaStrategy {
 
     public static void main(String[] args) {
-        ArrayList<Double> price = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter price path: ");
+        String pricePath = scanner.nextLine();
+
+        ArrayList<Double> price;
+        try {
+            price = PriceProvider.getPrice(pricePath);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
         System.out.println("Enter short ema period start: ");

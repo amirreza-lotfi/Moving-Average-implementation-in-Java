@@ -1,5 +1,6 @@
 package trade_engine.moving_average_strategy;
 
+import data.PriceProvider;
 import stoke_indexes.moving_average.ExponentialMovingAverage;
 import stoke_indexes.moving_average.MovingAverage;
 import stoke_indexes.moving_average.SimpleMovingAverage;
@@ -10,9 +11,17 @@ import java.util.Scanner;
 
 public class TwoSmaStrategy {
     public static void main(String[] args) {
-        ArrayList<Double> price = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter price path: ");
+        String pricePath = scanner.nextLine();
+
+        ArrayList<Double> price;
+        try {
+            price = PriceProvider.getPrice(pricePath);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
         System.out.println("Enter short sma period start: ");
