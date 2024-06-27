@@ -1,40 +1,21 @@
+package stoke_indexes.moving_average;
+
+import stoke_indexes.moving_average.MovingAverage;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class ExponentialMovingAverage {
+public class ExponentialMovingAverage extends MovingAverage {
 
-    private ArrayList<Double> prices;
 
-    public ExponentialMovingAverage(String pricePath) {
-        prices = new ArrayList<>();
-        setPrices(pricePath);
+    public ExponentialMovingAverage(ArrayList<Double> prices, int period) {
+        this.index = createExponentialMovingAverage(prices,period);
     }
 
-    public ExponentialMovingAverage( ArrayList<Double> prices) {
-        this.prices = prices;
-    }
 
-    public void setPrices(String path) {
-        try {
-            Scanner sc = new Scanner(new File(path));
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                try {
-                    Double price = Double.valueOf(line.trim());
-                    prices.add(price);
-                } catch (NumberFormatException e) {
-                    System.err.println("Skipping invalid price entry: " + line);
-                }
-            }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + path);
-        }
-    }
-
-    public ArrayList<Double> createExponentialMovingAverage(int period) {
+    private ArrayList<Double> createExponentialMovingAverage(ArrayList<Double> prices, int period) {
         ArrayList<Double> ema = new ArrayList<>();
 
         if (period <= 0 || period > prices.size()) {
@@ -62,4 +43,7 @@ public class ExponentialMovingAverage {
 
         return ema;
     }
+
+
+
 }
